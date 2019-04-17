@@ -1,0 +1,90 @@
+:root {
+    --border-color: lightgray; 
+}
+
+.main{
+    height: 80vh;
+}
+
+.sidebar{
+    background-color: whitesmoke;
+}
+
+.items{
+    background-color: white;
+
+}
+
+.navbar{
+    background-color:gainsboro;
+}
+
+.row{
+    height: inherit;
+}
+
+.hide{
+    display:none;
+}
+
+.header{
+    border-bottom:1px solid var(--border-color);
+    font-size: 1.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.addButton{
+    color:steelblue;
+    cursor: pointer;
+}
+
+.big{
+    font-size: 2rem;
+    text-align: center;
+    vertical-align: sub;
+}
+
+.extra{
+    font-size:.8rem;
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border: 3px solid var(--border-color);
+}
+
+.highPriority{
+    border-color:red;
+    background-color:#F97070;
+}
+
+.mediumPriority{
+    border-color:orange;
+    background-color:#FFC96D;
+}
+
+.lowPriority{
+    border-color:green;
+    background-color: #00C400;
+}
+
+.finishedPriority{
+    border-color:darkgray;
+    background-color: silver; 
+}
+
+.itemTitle, .project{
+    cursor: pointer;
+}
+
+.todoItem{
+    padding:1rem;
+    border-bottom:1px solid var(--border-color);
+}
+
+.complete{
+    color:gray;
+}
