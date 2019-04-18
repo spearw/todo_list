@@ -1,6 +1,5 @@
 import 'bootstrap';
 import _ from 'lodash';
-import {format, compareAsc} from 'date-fns/esm';
 
 
 //will be imported
@@ -34,11 +33,20 @@ document.getElementById("projectNameInput")
     }
 });
 
+document.getElementById("todoDescriptionInput")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("addTodoButton").click();
+    }
+});
+
 
 document.getElementById("newTodoButton").addEventListener('click', function(){
 
 
     document.getElementById("todoInput").classList.toggle("hide")
+    document.getElementById("addTodoButton").classList.toggle("hide")
     document.getElementById("todoTitleInput").focus();
 
 
@@ -132,7 +140,56 @@ function addTodo (){
 
     let newTodo = createTodo(title, description, dueDate, priority, notes);
     currentProject.todoList.push(newTodo);
+    console.log(newTodo);
     updateDomTodoItems(currentProject);
+
+}
+
+function editTodo(todo){
+
+    document.getElementById("todoInput").classList.toggle("hide");
+    document.getElementById("editTodoButton").classList.toggle("hide");
+    document.getElementById("todoTitleInput").focus();
+
+    document.getElementById("todoTitleInput").value = todo.title
+    document.getElementById("todoDescriptionInput").value = todo.description
+    document.getElementById("todoDuedateInput").value = todo.dueDate
+
+    if (todo.priority == "low") {
+        document.getElementById('lowPriorityRadio').checked = true;
+    }
+    else if (todo.priority == "medium") {
+        document.getElementById('mediumPriorityRadio').checked = true;
+    }
+    else if (todo.priority = "high") {
+        document.getElementById('highPriorityRadio').checked = true
+    } 
+
+    
+    document.getElementById("editTodoButton").addEventListener("click", function(){
+
+        todo.title = document.getElementById("todoTitleInput").value
+        todo.description = document.getElementById("todoDescriptionInput").value
+        todo.dueDate = document.getElementById("todoDuedateInput").value
+        
+        if (document.getElementById('lowPriorityRadio').checked) {
+            todo.priority = "low";
+        }
+        else if (document.getElementById('mediumPriorityRadio').checked) {
+            todo.priority = "medium";
+        }
+        else if (document.getElementById('highPriorityRadio').checked) {
+            todo.priority = "high";
+        }
+
+
+        updateDomTodoItems(currentProject);
+
+        document.getElementById("todoInput").classList.toggle("hide");
+        document.getElementById("editTodoButton").classList.toggle("hide"); 
+
+    })
+
 
 }
 
@@ -145,16 +202,15 @@ function updateDomTodoItems(currentProject){
 
     for (var i = 0; i<currentProject.todoList.length; i++){
 
+        let newTodo = currentProject.todoList[i]
         let container = document.createElement('div');
         container.className = "container todoItem"
 
-        console.log(currentProject.todoList[i])
-
-        let title = currentProject.todoList[i].title
-        let description = currentProject.todoList[i].description
-        let dueDate = currentProject.todoList[i].dueDate
-        let priority = currentProject.todoList[i].priority
-        let notes = currentProject.todoList[i].notes
+        let title = newTodo.title
+        let description = newTodo.description
+        let dueDate = newTodo.dueDate
+        let priority = newTodo.priority
+        let notes = newTodo.notes
 
         let primary = document.createElement('div');
         primary.className = 'row';
@@ -189,7 +245,18 @@ function updateDomTodoItems(currentProject){
 
         });
 
-        console.log(priority)
+        priorityDom.addEventListener('dblclick', function(){
+
+            //opens edit - should open the menu to edit stuff, and then give this item as the editable thing
+            console.log("double click")
+            console.log(newTodo)
+
+            editTodo(newTodo)
+
+
+
+
+        });
 
         if (priority == "low"){
             priorityDom.className = priorityDom.className + " lowPriority"

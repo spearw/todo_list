@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>To Do List</title>
-    <link rel="stylesheet" href="datepicker.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -65,7 +64,7 @@
                     <div id="todoInput" class = "hide">
                         <input id="todoTitleInput" class="form-control" type="text" placeholder="To do:">
                         
-                        <input id="todoDuedateInput" class="form-control" type="text" placeholder="Due Date">
+                        <input id="todoDuedateInput" class="form-control" type="date" placeholder="Due Date">
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="lowPriorityRadio" name="customRadioInline1" class="custom-control-input">
                             <label class="custom-control-label" for="lowPriorityRadio">Low</label>
@@ -80,12 +79,12 @@
                             </div>
                         <input id="todoDescriptionInput" class="form-control" type="text" placeholder="Description">
                         <input id="todoNotesInput" class="form-control hide" type="text" placeholder="Notes">
-                        <button id="addTodoButton" class="btn btn-outline-secondary" type="button">Add</button>
+                        <button id="addTodoButton" class="btn btn-outline-secondary hide" type="button">Add</button>
+                        <button id="editTodoButton" class="btn btn-outline-secondary hide" type="button">Edit</button>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="datepicker.min.js"></script> 
       <script src="main.js"></script>
   </body>
 </html>
